@@ -2,8 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class obstacles : MonoBehaviour
 {
+
+    [SerializeField]
+    public float weight;
+    public float max_given_weigth;
+    public float min_given_weight;
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -16,12 +23,5 @@ public class obstacles : MonoBehaviour
         
     }
    
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            Destroy(this.gameObject);
-            Debug.Log("1");
-        };
-    }
+    
 }
