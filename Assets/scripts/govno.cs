@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class govno : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField]
+    
     public GameObject govneco;
+    
     void Start()
     {
         
