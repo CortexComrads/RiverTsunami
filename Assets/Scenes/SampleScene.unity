@@ -5821,6 +5821,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 757024466}
+  - component: {fileID: 757024467}
   m_Layer: 0
   m_Name: WaterSpawner
   m_TagString: Respawn
@@ -5842,6 +5843,28 @@ Transform:
   m_Father: {fileID: 2002859177}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &757024467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757024465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a3aaacb8f50fc04a81272cef0e769de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Levels: 00000000000000000000000000000000
+  "Levels_min_\u0441": 0f0000000a0000000a0000000a000000
+  Levels_max_c: 00000000000000000000000000000000
+  T:
+  - 1
+  - 0.7
+  - 0.5
+  - 0.3
+  cur_T: []
+  level_count: 0
 --- !u!1001 &854905462
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11115,7 +11138,7 @@ PrefabInstance:
     - target: {fileID: 1289334555838124613, guid: b473f9fa85432d04d87b13be0da5b5b7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.68
+      value: 4.65
       objectReference: {fileID: 0}
     - target: {fileID: 1289334555838124613, guid: b473f9fa85432d04d87b13be0da5b5b7,
         type: 3}
@@ -11125,7 +11148,7 @@ PrefabInstance:
     - target: {fileID: 1289334555838124613, guid: b473f9fa85432d04d87b13be0da5b5b7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.19
+      value: 0.16
       objectReference: {fileID: 0}
     - target: {fileID: 1289334555838124613, guid: b473f9fa85432d04d87b13be0da5b5b7,
         type: 3}
@@ -11250,6 +11273,7 @@ GameObject:
   - component: {fileID: 1793089059}
   - component: {fileID: 1793089058}
   - component: {fileID: 1793089057}
+  - component: {fileID: 1793089061}
   m_Layer: 0
   m_Name: Dam
   m_TagString: Untagged
@@ -11268,7 +11292,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 0}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1793089058
 MeshRenderer:
@@ -11331,6 +11355,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1793089061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1793089056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a419fb489cfa1b4d9c8c3ae64e47e62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1877852368 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5236696860975304369, guid: 7394032036fe4634f80dd61d26f0c4ee,
@@ -11526,7 +11562,7 @@ GameObject:
   - component: {fileID: 2002859174}
   - component: {fileID: 2002859178}
   - component: {fileID: 2002859179}
-  - component: {fileID: 2002859181}
+  - component: {fileID: 2002859180}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -11623,13 +11659,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forward_speed: 4
-  player_speed: 6
+  player_speed: 6.5
   ejection_force: 6.96
   force_increment: 0
-  min_velocity: 1
+  min_speed: 0.005
   start_weight: 0
-  max_scale: 0
-  max_scalable_weight: 0
+  max_collision_radius: 5
+  max_scalable_enemies: 200
+  max_trigger_scale: {x: 9, y: 1, z: 9}
   left_border_object: {fileID: 1877852368}
   right_border_object: {fileID: 471813909}
   dynamicJoystick: {fileID: 690825814}
@@ -11639,12 +11676,7 @@ MonoBehaviour:
   SplashParticle: {fileID: 1247311384876784, guid: 4adffb0018aeda44e9263f901167af1f,
     type: 3}
   weight: 0
-  Levels:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  enemyCount: 1
 --- !u!54 &2002859179
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11661,19 +11693,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &2002859181
-MonoBehaviour:
+--- !u!65 &2002859180
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2002859173}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1516b27c49ed284191da0c576a25893, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  material_speed: {x: 0, y: -0.01}
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &5236696860612873825
 PrefabInstance:
   m_ObjectHideFlags: 0

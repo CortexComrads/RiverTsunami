@@ -19,10 +19,9 @@ public class DamScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(playerRef.GetComponent<Character>().weight);
+       
         
         T = (playerRef.GetComponent<Character>().weight / damHp);
-     
         desiredSize = Mathf.Lerp(0f, 30f, T);
         transform.localScale = new Vector3(1,1,desiredSize);
 

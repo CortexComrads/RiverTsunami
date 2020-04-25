@@ -13,8 +13,7 @@ public class game_controller : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        Application.targetFrameRate = 60;
-      
+        Application.targetFrameRate = 300;
     }
 
 

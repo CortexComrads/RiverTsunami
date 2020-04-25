@@ -16,9 +16,9 @@ public class level_end : MonoBehaviour
     {
         
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        if(other.CompareTag("Player"))
+        if(other.gameObject.CompareTag("Player"))
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
