@@ -21,6 +21,8 @@ public class Character : MonoBehaviour
     public GameObject waterUnit;
     public Text mainText;
     public GameObject SplashParticle;
+  
+    
 
     [HideInInspector] public float weight;
     [HideInInspector] public int enemyCount = 1;
@@ -39,6 +41,7 @@ public class Character : MonoBehaviour
     private Collider[] obstacles_collider;
     private Obstacles trigger;
     private GameObject SpawnerRef;
+    private UiController UiController;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +49,7 @@ public class Character : MonoBehaviour
         //init character
         weight = start_weight;
         rb = this.GetComponent<Rigidbody>();
+        UiController = GameObject.FindGameObjectsWithTag("Ui")[0].GetComponent<UiController>();
 
         //init borders
         left_border = left_border_object.transform.position.z;
@@ -109,16 +113,18 @@ public class Character : MonoBehaviour
         {
             if (game_over)
             {
-                if (Input.GetMouseButton(0))
+               /* if (Input.GetMouseButton(0))
                 {
                     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                 }
+                */
                     
             }
             else if (Input.GetMouseButton(0))
             {
                 level_started = true;
-                mainText.text = "Weigth:" + weight.ToString();
+               // mainText.text = "Weigth:" + weight.ToString();
+                UiController.toggleIngameUi(true);
             }
         }
     }
@@ -127,7 +133,7 @@ public class Character : MonoBehaviour
         if (other.CompareTag("Obstacle")&&other.GetComponent<Obstacles>().weight<=weight)
         {
             Instantiate<GameObject>(SplashParticle, transform.position, transform.rotation);
-            if(Mathf.Round(last_instatiate_score+1f)<weight)
+            if(Mathf.Round(last_instatiate_score+1f)<=weight)
             {
                 Instantiate<GameObject>(waterUnit, SpawnerRef.transform.position, SpawnerRef.transform.rotation);
                 enemyCount++;
@@ -135,13 +141,14 @@ public class Character : MonoBehaviour
                 float alpha = enemyCount / max_scalable_enemies;
                 GetComponent<SphereCollider>().radius = Mathf.Lerp(min_collision_radius,max_collision_radius,alpha);
                 GetComponent<BoxCollider>().size = Vector3.Lerp(min_trigger_scale,max_trigger_scale,alpha);
+                
             }
            
             trigger = other.GetComponent<Obstacles>();
             weight += Mathf.Lerp(trigger.max_given_weigth, trigger.min_given_weight,
              (weight - trigger.weight) / (trigger.max_character_weight - trigger.weight));
 
-            mainText.text = "Weigth:" + weight.ToString();
+            //mainText.text = "Weigth:" + weight.ToString();
             
             Destroy(other.gameObject);
             updateObstacles();
@@ -152,7 +159,7 @@ public class Character : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            rb.AddForce(0, 200, 0);
+            rb.AddForce(0, 125, 0);
         }
     }
     private void OnCollisionStay(Collision collision)
@@ -161,7 +168,7 @@ public class Character : MonoBehaviour
         {
             if (rb.velocity.x < min_speed)
             {
-                mainText.text = "GAME OVER";
+                //mainText.text = "GAME OVER";
                 GameObject[] waters = GameObject.FindGameObjectsWithTag("Water");
                 for (int i = 0; i < waters.Length; i++)
                 {
@@ -172,6 +179,9 @@ public class Character : MonoBehaviour
                 }
                 game_over = true;
                 level_started = false;
+                UiController.ToggleFinishUi();
+                UiController.toggleIngameUi(false);
+
 
             }
         }
@@ -194,5 +204,11 @@ public class Character : MonoBehaviour
                 }
             }
         }
+    }
+
+
+    public void restartPressed() 
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
