@@ -21,6 +21,7 @@ public class Character : MonoBehaviour
     public GameObject waterUnit;
     public Text mainText;
     public GameObject SplashParticle;
+    public GameObject VCam;
   
     
 
@@ -42,6 +43,7 @@ public class Character : MonoBehaviour
     private Obstacles trigger;
     private GameObject SpawnerRef;
     private UiController UiController;
+    private float FT;
 
     // Start is called before the first frame update
     void Start()
@@ -83,6 +85,7 @@ public class Character : MonoBehaviour
     //Nobody knows when called FixedUpdate
     private void FixedUpdate()
     {
+        print(GameObject.FindGameObjectsWithTag("Water").Length);
 
         if (level_started)
         {
@@ -94,20 +97,25 @@ public class Character : MonoBehaviour
             rb.AddForce(direction * player_speed * Time.fixedDeltaTime, ForceMode.VelocityChange);//right-left acceleration
 
             //ejection
+            
             if (this.transform.position.z < right_border)
             {
+                FT = (float)enemyCount / 100;
+                ejection_force = Mathf.Lerp(7f, 1f, FT);
                 rb.AddForce(0, 0, ejection_force + force_increment);
-                force_increment += 0.03F;
+                force_increment += 0.035f;   
 
             }
             else if (this.transform.position.z > left_border)
             {
+                FT = (float)enemyCount / 100;
+                ejection_force = Mathf.Lerp(7f, 1f, FT);
                 rb.AddForce(0, 0, -ejection_force + force_increment);
-                force_increment -= 0.03F;
+                force_increment -= 0.035f;
             }
             else force_increment = 0F;
-            
-            
+
+
         }
         else
         {
@@ -141,6 +149,7 @@ public class Character : MonoBehaviour
                 float alpha = enemyCount / max_scalable_enemies;
                 GetComponent<SphereCollider>().radius = Mathf.Lerp(min_collision_radius,max_collision_radius,alpha);
                 GetComponent<BoxCollider>().size = Vector3.Lerp(min_trigger_scale,max_trigger_scale,alpha);
+                VCam.GetComponent<CamScript>().UpdateYpos(enemyCount);
                 
             }
            

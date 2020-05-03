@@ -61,7 +61,7 @@ public class WaterScr : MonoBehaviour
         posX = playerRef.transform.position.x + Mathf.Sin(angle / sameEnemy * localID) * ((Distance + (float)playerScript.enemyCount * 0.01f) - (level / 10f));
         posZ = playerRef.transform.position.z + Mathf.Cos(angle / sameEnemy * localID) * ((Distance + (float)playerScript.enemyCount * 0.01f) - (level / 10f));
         posY = playerRef.transform.position.y + level / 10f;
-        posY += (Mathf.Sin(Time.time * 10 + localID * (level * 10 + 1))) / 20;
+        posY += (Mathf.Sin(Time.time * 8 + localID * (level * 10 + 1))) / 20;
 
 
         desiredPosition = new Vector3(posX, posY, posZ);

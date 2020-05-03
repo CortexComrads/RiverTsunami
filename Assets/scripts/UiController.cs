@@ -11,12 +11,15 @@ public class UiController : MonoBehaviour
     public GameObject beginText;
     public GameObject Bar;
     public GameObject LoseScreen;
+    public GameObject UpgradeMenu;
+    public GameObject UpperUi;
     private float barT;
     private float appDelay = 0.2f;
     Sprite sprite;
     bool activation;
-    private Vector3 finPos = new Vector3(0f, 555f, 0f);
-    private Vector3 iniPos = new Vector3(0f, 1000f, 0f);
+    private Vector3 finPos = new Vector3(0f, 990f, 0f);
+    private Vector3 iniPos = new Vector3(0f, 1550f, 0f);
+    private Vector3 downFinPos = new Vector3(0f, -1400f, 0f);
     int textTweenID;
     
     // Start is called before the first frame update
@@ -49,6 +52,8 @@ public class UiController : MonoBehaviour
                 activation = state;
             LeanTween.moveLocal(Bar, finPos, appDelay);
             LeanTween.alphaText(beginText.GetComponent<RectTransform>(), 0, appDelay);
+            LeanTween.moveLocal(UpgradeMenu,downFinPos,appDelay);
+            LeanTween.moveLocal(UpperUi, iniPos , appDelay);
             
         }
         else 
