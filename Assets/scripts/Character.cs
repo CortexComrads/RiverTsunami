@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+
+
+using TMPro;
 using UnityEngine.SceneManagement;
 
 public class Character : MonoBehaviour
@@ -19,10 +22,12 @@ public class Character : MonoBehaviour
                       right_border_object;
     public DynamicJoystick dynamicJoystick;
     public GameObject waterUnit;
-    public Text mainText;
+    public TextMeshProUGUI moneyText;
+    public TextMeshProUGUI moneyGainText;
+    public TextMeshProUGUI moneyGainedText;
     public GameObject SplashParticle;
     public GameObject VCam;
-  
+    public DamScript dam;
     
 
     [HideInInspector] public float weight;
@@ -43,6 +48,8 @@ public class Character : MonoBehaviour
     private Obstacles trigger;
     private GameObject SpawnerRef;
     private UiController UiController;
+    private bool level_complete;
+    private int money, moneyGain=0;
     private float FT;
 
     // Start is called before the first frame update
@@ -74,18 +81,25 @@ public class Character : MonoBehaviour
         //init colliders
         min_collision_radius = GetComponent<SphereCollider>().radius;
         min_trigger_scale = GetComponent<BoxCollider>().size;
+
+
+        //setmoney
+       
+        money = PlayerPrefs.GetInt("money");
+        moneyText.text = "$" + moneyConverter(money);
+        moneyGainText.text = "$"+moneyConverter(moneyGain);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+            
     }
     
     //Nobody knows when called FixedUpdate
     private void FixedUpdate()
     {
-        print(GameObject.FindGameObjectsWithTag("Water").Length);
+        //print(GameObject.FindGameObjectsWithTag("Water").Length);
 
         if (level_started)
         {
@@ -117,24 +131,7 @@ public class Character : MonoBehaviour
 
 
         }
-        else
-        {
-            if (game_over)
-            {
-               /* if (Input.GetMouseButton(0))
-                {
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-                }
-                */
-                    
-            }
-            else if (Input.GetMouseButton(0))
-            {
-                level_started = true;
-               // mainText.text = "Weigth:" + weight.ToString();
-                UiController.toggleIngameUi(true);
-            }
-        }
+        
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -156,11 +153,14 @@ public class Character : MonoBehaviour
             trigger = other.GetComponent<Obstacles>();
             weight += Mathf.Lerp(trigger.max_given_weigth, trigger.min_given_weight,
              (weight - trigger.weight) / (trigger.max_character_weight - trigger.weight));
+            moneyGain += trigger.money;
+            moneyGainText.text = "$" + moneyConverter(moneyGain);
+        
+        //mainText.text = "Weigth:" + weight.ToString();
 
-            //mainText.text = "Weigth:" + weight.ToString();
-            
-            Destroy(other.gameObject);
+        Destroy(other.gameObject);
             updateObstacles();
+            dam.damUpdate(weight);
         }
        
     }
@@ -177,24 +177,36 @@ public class Character : MonoBehaviour
         {
             if (rb.velocity.x < min_speed)
             {
-                //mainText.text = "GAME OVER";
-                GameObject[] waters = GameObject.FindGameObjectsWithTag("Water");
-                for (int i = 0; i < waters.Length; i++)
-                {
-                    waters[i].GetComponent<WaterScr>().enabled = false;
-                    waters[i].GetComponent<BoxCollider>().enabled = true;
-                    waters[i].GetComponent<Rigidbody>().useGravity = true;
-                    
-                }
-                game_over = true;
-                level_started = false;
-                UiController.ToggleFinishUi();
-                UiController.toggleIngameUi(false);
-
-
+                gameOver(false);
             }
         }
     }
+
+
+
+    public void gameOver(bool isSucces)
+    {
+        GameObject[] waters = GameObject.FindGameObjectsWithTag("Water");
+        for (int i = 0; i < waters.Length; i++)
+        {
+            waters[i].GetComponent<WaterScr>().enabled = false;
+            waters[i].GetComponent<BoxCollider>().enabled = true;
+            waters[i].GetComponent<Rigidbody>().useGravity = true;
+
+        }
+        game_over = true;
+        level_started = false;
+        moneyGainedText.text = moneyConverter(moneyGain);
+        UiController.ToggleFinishUi(isSucces);
+        UiController.toggleIngameUi(false);
+        level_complete = isSucces;
+        PlayerPrefs.SetInt("money",money+moneyGain);
+        
+    }
+
+
+
+
     public void updateObstacles()
     {
         for (int i = 0; i < obstacles_class.Length; i++)
@@ -203,12 +215,12 @@ public class Character : MonoBehaviour
             {
                 if (obstacles_class[i].weight > this.weight)
                 {
-                    obstacles_renderer[i].material.EnableKeyword("_EMISSION");
+                    obstacles_renderer[i].material.DisableKeyword("_EMISSION");
                     obstacles_collider[i].isTrigger = false;
                 }
                 else
                 {
-                    obstacles_renderer[i].material.DisableKeyword("_EMISSION");
+                    obstacles_renderer[i].material.EnableKeyword("_EMISSION");
                     obstacles_collider[i].isTrigger = true;
                 }
             }
@@ -218,6 +230,28 @@ public class Character : MonoBehaviour
 
     public void restartPressed() 
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        int indx = SceneManager.GetActiveScene().buildIndex;
+        indx += (level_complete) ? 1 : 0;
+        SceneManager.LoadScene(indx);
+    }
+    public void startPressed()
+    {
+        if (!level_started&&!game_over)
+        {
+            level_started = true;
+            // mainText.text = "Weigth:" + weight.ToString();
+            UiController.toggleIngameUi(true);
+        }
+        
+    }
+    public void moneyDecrement()
+    {
+        money -= 250;
+        moneyText.text = moneyConverter(money);
+        PlayerPrefs.SetInt("money", money);
+    }
+    public string moneyConverter(int x)
+    {
+        return (x < 1000) ? x.ToString() : (x / 1000.0)+"k";
     }
 }

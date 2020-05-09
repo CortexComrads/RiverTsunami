@@ -5,7 +5,7 @@ using UnityEngine;
 public class DamScript : MonoBehaviour
 {
 
-    public GameObject playerRef;
+    
     public float damHp;
     float T;
     float desiredSize;
@@ -13,19 +13,22 @@ public class DamScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-       
-        
-        T = (playerRef.GetComponent<Character>().weight / damHp);
-        desiredSize = Mathf.Lerp(0f, 30f, T);
-        transform.localScale = new Vector3(1,1,desiredSize);
 
-       // print("desire size " + desiredSize + "the T " + T + "Player Weight " + playerRef.GetComponent<character>().weight + "Actual GO size " + transform.localScale);
+
+        
+
+    }
+    public void damUpdate(float player_weight)
+    {
+        T = player_weight / damHp;
+        desiredSize = Mathf.Lerp(0f, 30f, T);
+        transform.localScale = new Vector3(1, 1, desiredSize);
     }
 
     private void OnTriggerEnter(Collider other)

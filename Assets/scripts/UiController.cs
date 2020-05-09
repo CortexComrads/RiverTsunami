@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UiController : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class UiController : MonoBehaviour
     public GameObject LoseScreen;
     public GameObject UpgradeMenu;
     public GameObject UpperUi;
+    public TextMeshProUGUI RestartText;
     private float barT;
     private float appDelay = 0.2f;
     Sprite sprite;
@@ -64,8 +66,9 @@ public class UiController : MonoBehaviour
         }
 
     }
-    public void ToggleFinishUi() 
+    public void ToggleFinishUi(bool level_complete) 
     {
+        if(level_complete)RestartText.text = "Continue!";
         LeanTween.moveLocal(LoseScreen, new Vector3(0f, 0f, 0f) , 0.8f);
     }
 }

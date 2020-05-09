@@ -50,6 +50,7 @@ MonoBehaviour:
   max_character_weight: 70
   max_given_weigth: 2
   min_given_weight: 0.2
+  money: 300
 --- !u!33 &8169079862328709686
 MeshFilter:
   m_ObjectHideFlags: 0

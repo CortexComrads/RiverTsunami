@@ -11,6 +11,7 @@ public class Obstacles : MonoBehaviour
     public float max_character_weight;
     public float max_given_weigth;
     public float min_given_weight;
+    public int money;
    
     // Start is called before the first frame update
     void Start()

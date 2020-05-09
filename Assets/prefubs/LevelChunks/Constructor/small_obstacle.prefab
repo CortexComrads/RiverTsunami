@@ -50,6 +50,7 @@ MonoBehaviour:
   max_character_weight: 45
   max_given_weigth: 1
   min_given_weight: 0.1
+  money: 100
 --- !u!23 &327235634664445945
 MeshRenderer:
   m_ObjectHideFlags: 0

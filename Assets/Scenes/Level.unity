@@ -513,6 +513,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 139368749}
     m_Modifications:
+    - target: {fileID: 1340058910980111435, guid: 56fae09712773584fb63896d473a98ee,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1340058910980111435, guid: 56fae09712773584fb63896d473a98ee,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1340058910980111435, guid: 56fae09712773584fb63896d473a98ee,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1340058910980111435, guid: 56fae09712773584fb63896d473a98ee,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2002859178}
+    - target: {fileID: 1340058910980111435, guid: 56fae09712773584fb63896d473a98ee,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: startPressed
+      objectReference: {fileID: 0}
+    - target: {fileID: 1340058910980111435, guid: 56fae09712773584fb63896d473a98ee,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8135886326569738820, guid: 56fae09712773584fb63896d473a98ee,
         type: 3}
       propertyPath: m_RaycastTarget
@@ -1604,7 +1634,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 417989360}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2002859178}
+        m_MethodName: moneyDecrement
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &417989360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6304,7 +6345,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71f469ad7522c3a4384f61eee86efc5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerRef: {fileID: 2002859173}
   damHp: 120
 --- !u!65 &608971021
 BoxCollider:
@@ -7649,7 +7689,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 974799247}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2002859178}
+        m_MethodName: moneyDecrement
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &974799247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8617,7 +8668,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1255417253}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2002859178}
+        m_MethodName: moneyDecrement
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1255417253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14400,6 +14462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a419fb489cfa1b4d9c8c3ae64e47e62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  character_script: {fileID: 2002859178}
 --- !u!1 &1834437608
 GameObject:
   m_ObjectHideFlags: 0
@@ -14497,6 +14560,7 @@ MonoBehaviour:
   LoseScreen: {fileID: 1442835362}
   UpgradeMenu: {fileID: 1834437608}
   UpperUi: {fileID: 1047334459}
+  RestartText: {fileID: 1944576264}
 --- !u!1 &1877852368 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5236696860975304369, guid: 7394032036fe4634f80dd61d26f0c4ee,
@@ -15076,16 +15140,19 @@ MonoBehaviour:
   start_weight: 0
   max_collision_radius: 5
   max_scalable_enemies: 200
-  max_trigger_scale: {x: 9, y: 1, z: 9}
+  max_trigger_scale: {x: 9, y: 9, z: 9}
   left_border_object: {fileID: 1877852368}
   right_border_object: {fileID: 471813909}
   dynamicJoystick: {fileID: 690825814}
   waterUnit: {fileID: 6979604502025353740, guid: 174f8380f5db8e7418d61f6afcf02cb2,
     type: 3}
-  mainText: {fileID: 0}
+  moneyText: {fileID: 1196603317}
+  moneyGainText: {fileID: 1964147989}
+  moneyGainedText: {fileID: 1515723898}
   SplashParticle: {fileID: 1247311384876784, guid: 4adffb0018aeda44e9263f901167af1f,
     type: 3}
   VCam: {fileID: 57340977}
+  dam: {fileID: 608971020}
   weight: 0
   enemyCount: 1
 --- !u!54 &2002859179

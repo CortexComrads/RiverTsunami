@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class level_end : MonoBehaviour
 {
+    public Character character_script;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +19,7 @@ public class level_end : MonoBehaviour
     }
     private void OnCollisionEnter(Collision other)
     {
-        if(other.gameObject.CompareTag("Player"))
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (other.gameObject.CompareTag("Player"))
+            character_script.gameOver(true);
     }
 }

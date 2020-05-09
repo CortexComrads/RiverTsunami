@@ -50,6 +50,7 @@ MonoBehaviour:
   max_character_weight: 170
   max_given_weigth: 5
   min_given_weight: 1
+  money: 500
 --- !u!135 &3179086996022790706
 SphereCollider:
   m_ObjectHideFlags: 0
