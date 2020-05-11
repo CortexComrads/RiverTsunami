@@ -9,6 +9,9 @@ TagManager:
   - Ground
   - FxTemporaire
   - Ui
+  - increment
+  - power
+  - OflineEarnings
   layers:
   - Default
   - TransparentFX

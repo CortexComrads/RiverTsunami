@@ -48,6 +48,12 @@ public class Character : MonoBehaviour
     private Obstacles trigger;
     private GameObject SpawnerRef;
     private UiController UiController;
+    private TextMeshProUGUI incrementText;
+    private TextMeshProUGUI offlineText;
+    private TextMeshProUGUI powerText;
+    private int increment_lvl;
+    private int power_lvl;
+    private int offline_lvl;
     private bool level_complete;
     private int money, moneyGain=0;
     private float FT;
@@ -84,12 +90,25 @@ public class Character : MonoBehaviour
 
 
         //setmoney
-       
         money = PlayerPrefs.GetInt("money");
         moneyText.text = "$" + moneyConverter(money);
         moneyGainText.text = "$"+moneyConverter(moneyGain);
-    }
 
+        //setmodificators
+        incrementText = GameObject.FindGameObjectWithTag("increment").GetComponent<TextMeshProUGUI>();
+        offlineText = GameObject.FindGameObjectWithTag("OflineEarnings").GetComponent<TextMeshProUGUI>();
+        powerText = GameObject.FindGameObjectWithTag("power").GetComponent<TextMeshProUGUI>();
+        increment_lvl = PlayerPrefs.GetInt("increment");
+        power_lvl= PlayerPrefs.GetInt("power");
+        offline_lvl = PlayerPrefs.GetInt("offline");
+        if (increment_lvl == 0) increment_lvl = 1;
+        if (power_lvl == 0) power_lvl = 1;
+        if (offline_lvl == 0) offline_lvl = 1;
+        incrementText.text = "lvl " + increment_lvl;
+        powerText.text = "lvl " + power_lvl;
+        offlineText.text = "lvl " + offline_lvl;
+    }
+    
     // Update is called once per frame
     void Update()
     {
@@ -127,6 +146,7 @@ public class Character : MonoBehaviour
                 rb.AddForce(0, 0, -ejection_force + force_increment);
                 force_increment -= 0.035f;
             }
+            
             else force_increment = 0F;
 
 
@@ -231,7 +251,7 @@ public class Character : MonoBehaviour
     public void restartPressed() 
     {
         int indx = SceneManager.GetActiveScene().buildIndex;
-        indx += (level_complete) ? 1 : 0;
+        if (level_complete) indx++;
         SceneManager.LoadScene(indx);
     }
     public void startPressed()
@@ -244,14 +264,37 @@ public class Character : MonoBehaviour
         }
         
     }
-    public void moneyDecrement()
+    public void incrementPressed()
     {
         money -= 250;
         moneyText.text = moneyConverter(money);
         PlayerPrefs.SetInt("money", money);
+        increment_lvl++;
+        PlayerPrefs.SetInt("increment", increment_lvl);
+        incrementText.text = "lvl " + increment_lvl;
+        
+    }
+    public void powerPressed()
+    {
+        money -= 250;
+        moneyText.text = moneyConverter(money);
+        PlayerPrefs.SetInt("money", money);
+        power_lvl++;
+        PlayerPrefs.SetInt("power", power_lvl);
+        powerText.text = "lvl " + power_lvl;
+    }
+    public void offlinePressed()
+    {
+        money -= 250;
+        moneyText.text = moneyConverter(money);
+        PlayerPrefs.SetInt("money", money);
+        offline_lvl++;
+        PlayerPrefs.SetInt("offline", offline_lvl);
+        offlineText.text = "lvl " + offline_lvl;
     }
     public string moneyConverter(int x)
     {
         return (x < 1000) ? x.ToString() : (x / 1000.0)+"k";
     }
+    
 }
