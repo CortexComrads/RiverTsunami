@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!64 &2087919333510893000
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8180413967395472211}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 92e7b4979ccefa2439278b18dc043d04, type: 3}
 --- !u!1001 &180282346765718513
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -790,7 +804,7 @@ PrefabInstance:
     - target: {fileID: 8778960936106106708, guid: b576571ab7a2b67469c70445fbbbeeca,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.57
+      value: -3.04
       objectReference: {fileID: 0}
     - target: {fileID: 8778960936106106708, guid: b576571ab7a2b67469c70445fbbbeeca,
         type: 3}
@@ -855,7 +869,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 92e7b4979ccefa2439278b18dc043d04, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.62
+      value: -3.23
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 92e7b4979ccefa2439278b18dc043d04, type: 3}
       propertyPath: m_LocalRotation.x
@@ -891,18 +905,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 92e7b4979ccefa2439278b18dc043d04, type: 3}
       propertyPath: m_LocalScale.x
-      value: 12.106398
+      value: 10.126638
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 92e7b4979ccefa2439278b18dc043d04, type: 3}
       propertyPath: m_LocalScale.y
-      value: 25.66302
+      value: 17.6849
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 92e7b4979ccefa2439278b18dc043d04, type: 3}
       propertyPath: m_LocalScale.z
-      value: 6.9557014
+      value: 4.375304
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92e7b4979ccefa2439278b18dc043d04, type: 3}
+--- !u!1 &8180413967395472211 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 92e7b4979ccefa2439278b18dc043d04,
+    type: 3}
+  m_PrefabInstance: {fileID: 8180413967395571187}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8847844114967083500
 PrefabInstance:
   m_ObjectHideFlags: 0

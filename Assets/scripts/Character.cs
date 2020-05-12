@@ -28,6 +28,8 @@ public class Character : MonoBehaviour
     public GameObject SplashParticle;
     public GameObject VCam;
     public DamScript dam;
+    public GameObject Destro;
+    public GameObject lvlUpFx;
     
 
     [HideInInspector] public float weight;
@@ -57,6 +59,8 @@ public class Character : MonoBehaviour
     private bool level_complete;
     private int money, moneyGain=0;
     private float FT;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -157,8 +161,13 @@ public class Character : MonoBehaviour
     {
         if (other.CompareTag("Obstacle")&&other.GetComponent<Obstacles>().weight<=weight)
         {
+           
             Instantiate<GameObject>(SplashParticle, transform.position, transform.rotation);
-            if(Mathf.Round(last_instatiate_score+1f)<=weight)
+            if (other.GetComponent<Obstacles>().money == 500)
+            Instantiate<GameObject>(Destro, other.transform.position, other.transform.rotation);
+            if (other.GetComponent<Obstacles>().money == 300)
+                Instantiate<GameObject>(Destro, other.transform.position, other.transform.rotation).transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+            if (Mathf.Round(last_instatiate_score+1f)<=weight)
             {
                 Instantiate<GameObject>(waterUnit, SpawnerRef.transform.position, SpawnerRef.transform.rotation);
                 enemyCount++;
@@ -272,6 +281,7 @@ public class Character : MonoBehaviour
         increment_lvl++;
         PlayerPrefs.SetInt("increment", increment_lvl);
         incrementText.text = "lvl " + increment_lvl;
+        Instantiate<GameObject>(lvlUpFx, this.gameObject.transform.position, this.gameObject.transform.rotation);
         
     }
     public void powerPressed()
@@ -282,6 +292,7 @@ public class Character : MonoBehaviour
         power_lvl++;
         PlayerPrefs.SetInt("power", power_lvl);
         powerText.text = "lvl " + power_lvl;
+        Instantiate<GameObject>(lvlUpFx, this.gameObject.transform.position, this.gameObject.transform.rotation);
     }
     public void offlinePressed()
     {
@@ -291,6 +302,7 @@ public class Character : MonoBehaviour
         offline_lvl++;
         PlayerPrefs.SetInt("offline", offline_lvl);
         offlineText.text = "lvl " + offline_lvl;
+        Instantiate<GameObject>(lvlUpFx, this.gameObject.transform.position, this.gameObject.transform.rotation);
     }
     public string moneyConverter(int x)
     {
