@@ -15344,6 +15344,8 @@ MonoBehaviour:
   VCam: {fileID: 821124683}
   dam: {fileID: 938869020}
   Destro: {fileID: 713760002722631612, guid: 6baa2a66c40c0964db49d198c2bbda61, type: 3}
+  DestroSmall: {fileID: 5001316631110807495, guid: 1829d758cd48a9f4ab0dd89a66bedbf5,
+    type: 3}
   lvlUpFx: {fileID: 100018, guid: f3f7a3864775b4147acb70b073f6c951, type: 3}
   weight: 0
   enemyCount: 1
@@ -15795,6 +15797,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: game_controller
       objectReference: {fileID: 0}
+    - target: {fileID: 6028825807470776209, guid: 88c1f57cea30cf1488ae327687ec5719,
+        type: 3}
+      propertyPath: m_TagString
+      value: GameController
+      objectReference: {fileID: 0}
+    - target: {fileID: 6028825807470776214, guid: 88c1f57cea30cf1488ae327687ec5719,
+        type: 3}
+      propertyPath: rocksMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 0f6b51fa43133e84b95c6bdd4ce9431d, type: 2}
     - target: {fileID: 6028825807470776298, guid: 88c1f57cea30cf1488ae327687ec5719,
         type: 3}
       propertyPath: m_LocalPosition.x

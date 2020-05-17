@@ -29,6 +29,7 @@ public class Character : MonoBehaviour
     public GameObject VCam;
     public DamScript dam;
     public GameObject Destro;
+    public GameObject DestroSmall;
     public GameObject lvlUpFx;
     
 
@@ -166,7 +167,7 @@ public class Character : MonoBehaviour
             if (other.GetComponent<Obstacles>().money == 500)
             Instantiate<GameObject>(Destro, other.transform.position, other.transform.rotation);
             if (other.GetComponent<Obstacles>().money == 300)
-                Instantiate<GameObject>(Destro, other.transform.position, other.transform.rotation).transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+                Instantiate<GameObject>(DestroSmall, other.transform.position, other.transform.rotation);
             if (Mathf.Round(last_instatiate_score+1f)<=weight)
             {
                 Instantiate<GameObject>(waterUnit, SpawnerRef.transform.position, SpawnerRef.transform.rotation);

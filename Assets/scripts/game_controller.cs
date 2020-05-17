@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+
 public class game_controller : MonoBehaviour
 {
+    public Material rocksMat;
+    
     
     [SerializeField]
     
