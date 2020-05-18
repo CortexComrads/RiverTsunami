@@ -12,6 +12,7 @@ TagManager:
   - increment
   - power
   - OflineEarnings
+  - DamPieces
   layers:
   - Default
   - TransparentFX

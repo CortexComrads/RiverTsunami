@@ -27,7 +27,6 @@ public class Character : MonoBehaviour
     public TextMeshProUGUI moneyGainedText;
     public GameObject SplashParticle;
     public GameObject VCam;
-    public DamScript dam;
     public GameObject Destro;
     public GameObject DestroSmall;
     public GameObject lvlUpFx;
@@ -60,6 +59,8 @@ public class Character : MonoBehaviour
     private bool level_complete;
     private int money, moneyGain=0;
     private float FT;
+    private GameObject[] damPieces;
+    private int damI;
 
 
 
@@ -70,6 +71,10 @@ public class Character : MonoBehaviour
         weight = start_weight;
         rb = this.GetComponent<Rigidbody>();
         UiController = GameObject.FindGameObjectsWithTag("Ui")[0].GetComponent<UiController>();
+
+        //init Dam
+        damPieces = GameObject.FindGameObjectsWithTag("DamPieces");
+        damI = damPieces.Length;
 
         //init borders
         left_border = left_border_object.transform.position.z;
@@ -179,6 +184,13 @@ public class Character : MonoBehaviour
                 VCam.GetComponent<CamScript>().UpdateYpos(enemyCount);
                 
             }
+            for (int ii = 0; ii  < damI; ii ++)
+            {
+                if (damPieces[ii]!=null) 
+                {
+                damPieces[ii].GetComponent<DamNew>().updateWeight(weight);
+                }
+            }
            
             trigger = other.GetComponent<Obstacles>();
             weight += Mathf.Lerp(trigger.max_given_weigth, trigger.min_given_weight,
@@ -190,7 +202,7 @@ public class Character : MonoBehaviour
 
         Destroy(other.gameObject);
             updateObstacles();
-            dam.damUpdate(weight);
+
         }
        
     }

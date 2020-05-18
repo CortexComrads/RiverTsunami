@@ -8,7 +8,7 @@ public class UiController : MonoBehaviour
 {
     public Slider slider;
     public GameObject playerRef;
-    public GameObject damRef;
+    //public GameObject damRef;
     public GameObject beginText;
     public GameObject Bar;
     public GameObject LoseScreen;
@@ -35,11 +35,11 @@ public class UiController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (activation == true) 
+        /*if (activation == true) 
         {
             barT = playerRef.GetComponent<Character>().weight / damRef.GetComponent<DamScript>().damHp;
             Bar.gameObject.GetComponent<Slider>().value = barT;
-        }
+        }*/
     }
 
 
