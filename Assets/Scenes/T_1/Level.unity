@@ -8240,7 +8240,7 @@ GameObject:
   - component: {fileID: 1196603317}
   m_Layer: 5
   m_Name: Money
-  m_TagString: Untagged
+  m_TagString: Money
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8552,7 +8552,7 @@ GameObject:
   - component: {fileID: 1253119138}
   m_Layer: 5
   m_Name: UP_Cost
-  m_TagString: Untagged
+  m_TagString: pPrice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13926,7 +13926,7 @@ GameObject:
   - component: {fileID: 1515723898}
   m_Layer: 5
   m_Name: MoneyGained
-  m_TagString: Untagged
+  m_TagString: moneyGained
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14082,7 +14082,7 @@ GameObject:
   - component: {fileID: 1519797831}
   m_Layer: 5
   m_Name: UP_Cost
-  m_TagString: Untagged
+  m_TagString: iPrice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14921,7 +14921,7 @@ GameObject:
   - component: {fileID: 1964147989}
   m_Layer: 5
   m_Name: MoneyGain
-  m_TagString: Untagged
+  m_TagString: moneyGain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15360,15 +15360,20 @@ MonoBehaviour:
   start_weight: 0
   max_collision_radius: 5
   max_scalable_enemies: 200
+  increment_start: 10000
+  power_start: 800
+  offline_start: 1000
+  increment_price_multiplier: 2
+  power_price_multiplier: 1.3
+  offline_price_multiplier: 1.3
+  power_coefficient: 0.002
+  offline_coefficient: 800
   max_trigger_scale: {x: 9, y: 9, z: 9}
   left_border_object: {fileID: 1877852368}
   right_border_object: {fileID: 471813909}
   dynamicJoystick: {fileID: 690825814}
   waterUnit: {fileID: 6979604502025353740, guid: 174f8380f5db8e7418d61f6afcf02cb2,
     type: 3}
-  moneyText: {fileID: 1196603317}
-  moneyGainText: {fileID: 1964147989}
-  moneyGainedText: {fileID: 1515723898}
   SplashParticle: {fileID: 100018, guid: f9f37a746462be6479f9b5e2c3189071, type: 3}
   VCam: {fileID: 57340977}
   Destro: {fileID: 713760002722631612, guid: 6baa2a66c40c0964db49d198c2bbda61, type: 3}
@@ -15419,7 +15424,7 @@ GameObject:
   - component: {fileID: 2010101417}
   m_Layer: 5
   m_Name: UP_Cost
-  m_TagString: Untagged
+  m_TagString: oPrice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
