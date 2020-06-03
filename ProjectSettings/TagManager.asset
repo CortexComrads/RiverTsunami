@@ -19,6 +19,7 @@ TagManager:
   - Money
   - moneyGain
   - moneyGained
+  - Voodoo
   layers:
   - Default
   - TransparentFX

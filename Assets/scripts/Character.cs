@@ -85,7 +85,9 @@ public class Character : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        PlayerPrefs.DeleteAll();
+        //init Voodoo
+        TinySauce.OnGameStarted(cur_level.ToString());
         //init character
         weight = start_weight;
         rb = this.GetComponent<Rigidbody>();
@@ -333,11 +335,13 @@ public class Character : MonoBehaviour
     {
         if (level_complete)
         {
+            TinySauce.OnGameFinished(cur_level.ToString(), level_complete, enemyCount);
             PlayerPrefs.SetInt("cur_level", cur_level + 1);
             SceneManager.LoadScene(0);
         }
         else
         {
+            TinySauce.OnGameFinished(cur_level.ToString(), level_complete, enemyCount);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
